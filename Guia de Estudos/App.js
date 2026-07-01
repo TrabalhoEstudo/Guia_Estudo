@@ -7,6 +7,7 @@ import HomeScreen from "./HomeScreen";
 import ListaScreen from "./ListaScreen";
 import DetalhesScreen from "./DetalhesScreen";
 import PerfilScreen from "./PerfilScreen";
+import CadastroScreen from "./CadastroScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,22 +15,25 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen 
-          name="Login" 
-          component={LoginScreen}
-          options={{ title: "Entrar" }}
+        <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+        />
+        <Stack.Screen
+        name="Cadastro"
+        component={CadastroScreen}
+        options={{ headerShown: false }}
+        />
+        <Stack.Screen
+        name="Home"
+        component={HomeScreen}
         />
 
         <Stack.Screen 
-          name="Home" 
-          component={HomeScreen}
-          options={{ title: "Início" }}
-        />
-
-        <Stack.Screen 
-          name="Lista" 
+          name="Guia" 
           component={ListaScreen}
-          options={{ title: "Lista" }}
+          options={{ title: "Guia" }}
         />
 
         <Stack.Screen 
@@ -39,9 +43,9 @@ export default function App() {
         />
 
         <Stack.Screen 
-          name="Perfil" 
+          name="Agenda" 
           component={PerfilScreen}
-          options={{ title: "Perfil" }}
+          options={{ title: "Agenda" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
