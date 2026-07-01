@@ -304,12 +304,11 @@ export default function GuiaEstudos({ navigation }) {
                 {areaAberta === area.nome ? "▼ " : "▶ "}{area.nome}
               </Text>
 
-
+{/* Barra de progresso */}
               <Text style={styles.progresso}>
                 {concluidas} de {total} concluídas ({porcentagem}%)
               </Text>
-              
-{/* Barra de progresso */}
+
               <View style={styles.barra}>
                 <View
                   style={[styles.preenchimento, { width: `${porcentagem}%` }]}
@@ -320,19 +319,20 @@ export default function GuiaEstudos({ navigation }) {
 {/* Executa o marca/desmarca da matéria */}
             {areaAberta === area.nome && (
               area.materias.map((materia, i) => (
-                <TouchableOpacity
-                  key={i}
-                  onPress={() => marcarMateria(area.nome, materia.nome)}
-                >
-                  <Text style={styles.materia}>
-                    {materia.concluida ? "☑ " : "☐ "}{materia.nome}
-                  </Text>
-                </TouchableOpacity>
-              ))
-            )}
-          </View>
-        );
-      })}
+              <View key={i} style={styles.itemMateria}>
+
+            <TouchableOpacity
+              style={{ flex: 1 }}
+              onPress={() => marcarMateria(area.nome, materia.nome)}
+            >
+            <Text style={styles.materia}>
+              {materia.concluida ? "☑ " : "☐ "}
+              {materia.nome}
+            </Text>
+          </TouchableOpacity>
+    </View>
+  ))
+)}
 
 {/* Menu para navegar à tela inicial ou a de agenda */}
       <View style={styles.menuInferior}>
@@ -340,17 +340,11 @@ export default function GuiaEstudos({ navigation }) {
           style={styles.botaoMenu}
           onPress={() => navigation.navigate("Home")}
         >
-          <Text style={styles.textoMenu}>Tela Inicial</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.botaoMenu}
-          onPress={() => navigation.navigate("Agenda")}
-        >
-          <Text style={styles.textoMenu}>Agenda</Text>
+          <Text style={styles.textoMenu}>
+            Tela Inicial
+          </Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
   );
 }
 
@@ -403,6 +397,25 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#111B33",
   },
+  itemMateria: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  marginBottom: 8,
+},
+
+botaoAgenda: {
+  backgroundColor: "#0088FF",
+  paddingHorizontal: 12,
+  paddingVertical: 8,
+  borderRadius: 8,
+  marginRight: 10,
+},
+
+textoAgenda: {
+  color: "#FFF",
+  fontWeight: "bold",
+},
   progresso: {
     color: "#6B8EBF",
     fontSize: 14,
@@ -445,3 +458,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
